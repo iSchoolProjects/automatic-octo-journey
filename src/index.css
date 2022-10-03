@@ -1,0 +1,126 @@
+body {
+  margin: 0;
+
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.divider {
+  width: 90%;
+  opacity: 0.5;
+  margin: 6px 0px;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+form {
+  position: relative;
+  width: 80%;
+  margin-top: 24px;
+  padding: 48px 24px;
+  border-top-right-radius: 120px;
+  border-bottom-right-radius: 120px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.btn-submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(to right, rgb(15, 52, 67), rgb(52, 232, 158));
+  position: absolute;
+  right: -24px;
+  top: calc(50% - 24px);
+  border-radius: 50%;
+  border: 0px;
+}
+
+input {
+  display: block;
+  padding: 10px;
+  border: 0px;
+}
+
+input:focus-visible {
+  outline: transparent;
+}
+
+.container-social-media {
+  margin-top: 4rem;
+}
+
+.holder-social-media {
+  display: flex;
+  justify-content: center;
+  column-gap: 20px;
+}
+
+.footer-bg {
+  position: fixed;
+  bottom: 0px;
+  z-index: -1;
+}
+
+.btn-rounded-gray {
+  padding: 8px;
+  border-radius: 50%;
+  background-color: transparent;
+  display: flex;
+  border: 2px solid #888888;
+  width: 48px;
+  height: 48px;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  width: min-content;
+  z-index: 1;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 8px 24px;
+}
+
+.login-page .card {
+  width: min-content;
+  margin-top: 24px;
+  padding: 8px 24px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  z-index: 1;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.register-page .card {
+  position: absolute;
+  right: 0px;
+  top: 60px;
+  margin-top: 24px;
+
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+}
+
+.card a {
+  background-color: transparent;
+  border: none;
+  color: rgb(248, 37, 37);
+  font-weight: bold;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.forgot-password {
+  padding: 0 24px;
+  text-align: right;
+  opacity: 0.5;
+}
