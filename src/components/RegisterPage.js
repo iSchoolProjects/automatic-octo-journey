@@ -1,19 +1,28 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import SocialLogin from "./SocialLogin";
 
 export default function RegisterPage() {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
+  const [{ username, email, password, repeatPassword }, setRegisterData] =
+    useState({
+      username: "",
+      email: "",
+      password: "",
+      repeatPassword: "",
+    });
+
+  function changeHandler(e) {
+    setRegisterData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  }
 
   return (
     <div className="register-page">
       <img width="100%" src="/images/header-bg.png" alt="" />
       <div className="card">
-        <Link to="/">
-          Login
-        </Link>
+        <Link to="/">Login</Link>
       </div>
       <form>
         <div className="flex">
@@ -22,7 +31,8 @@ export default function RegisterPage() {
             type="text"
             placeholder="Username"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            name="username"
+            onChange={(e) => changeHandler(e)}
           />
         </div>
 
@@ -34,7 +44,8 @@ export default function RegisterPage() {
             type="email"
             placeholder="Email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            name="email"
+            onChange={(e) => changeHandler(e)}
           />
         </div>
 
@@ -46,7 +57,8 @@ export default function RegisterPage() {
             type="password"
             placeholder="Password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            name="password"
+            onChange={(e) => changeHandler(e)}
           />
         </div>
 
@@ -58,41 +70,24 @@ export default function RegisterPage() {
             type="password"
             placeholder="Repeat Password"
             value={repeatPassword}
-            onChange={(e) => setRepeatPassword(e.target.value)}
+            name="repeatPassword"
+            onChange={(e) => changeHandler(e)}
           />
         </div>
 
         <button type="button" className="btn-submit">
-          <img width={24} height={24} src="/images/right-arrow-white.png" alt="" />
+          <img
+            width={24}
+            height={24}
+            src="/images/right-arrow-white.png"
+            alt=""
+          />
         </button>
       </form>
 
       <div className="container-social-media text-center">
-        <p>Or sign in with</p>
-        <div className="holder-social-media">
-          <button className="btn-rounded-gray">
-            <a href="#" target="target_blank">
-              <img src="/images/facebook.png" alt="" />
-            </a>
-          </button>
-          <button className="btn-rounded-gray">
-            <a href="#" target="target_blank">
-              <img src="/images/twitter.png" alt="" />
-            </a>
-          </button>
-          <button className="btn-rounded-gray">
-            <a href="#" target="target_blank">
-              <img src="/images/g.png" alt="" />
-            </a>
-          </button>
-          <button className="btn-rounded-gray">
-            <a href="#" target="target_blank">
-              <img src="/images/instagram.png" alt="" />
-            </a>
-          </button>
-        </div>
+        <SocialLogin />
       </div>
-
       <img
         className="footer-bg"
         width="100%"

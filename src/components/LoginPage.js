@@ -1,12 +1,22 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import SocialLogin from "./SocialLogin";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [{email,password}, setLoginData] = useState({
+    email: "",
+    password: "",
+  });
+
+  function changeHandler(e) {
+    setLoginData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  }
 
   function doLogin() {
-    alert(email, password);
+    alert("email : " + email + "  password : " + password);
   }
 
   return (
@@ -19,7 +29,8 @@ export default function LoginPage() {
             type="text"
             placeholder="Username or email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            name="email"
+            onChange={(e) => changeHandler(e)}
           />
         </div>
 
@@ -31,48 +42,28 @@ export default function LoginPage() {
             type="password"
             placeholder="Password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            name="password"
+            onChange={(e) => changeHandler(e)}
           />
         </div>
 
         <button type="button" className="btn-submit" onClick={() => doLogin()}>
-          <img width={24} height={24} src="/images/right-arrow-white.png" alt="" />
+          <img
+            width={24}
+            height={24}
+            src="/images/right-arrow-white.png"
+            alt=""
+          />
         </button>
       </form>
 
       <p className="forgot-password">Forgot your password?</p>
 
       <div className="card">
-        <Link to="/register">
-          Register
-        </Link>
+        <Link to="/register">Register</Link>
       </div>
 
-      <div className="container-social-media text-center">
-        <p>Or sign in with</p>
-        <div className="holder-social-media">
-          <button className="btn-rounded-gray">
-            <a href="#" target="target_blank">
-              <img src="/images/facebook.png" alt="" />
-            </a>
-          </button>
-          <button className="btn-rounded-gray">
-            <a href="#" target="target_blank">
-              <img src="/images/twitter.png" alt="" />
-            </a>
-          </button>
-          <button className="btn-rounded-gray">
-            <a href="#" target="target_blank">
-              <img src="/images/g.png" alt="" />
-            </a>
-          </button>
-          <button className="btn-rounded-gray">
-            <a href="#" target="target_blank">
-              <img src="/images/instagram.png" alt="" />
-            </a>
-          </button>
-        </div>
-      </div>
+      <SocialLogin />
       <img
         className="footer-bg"
         width="100%"
