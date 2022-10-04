@@ -1,11 +1,23 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import SocialLogin from "./SocialLogin";
+import _debounce from "lodash/debounce";
 
 export default function RegisterPage() {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
+  const [{ username, email, password, repeatPassword }, setRegisterData] =
+    useState({
+      username: "",
+      email: "",
+      password: "",
+      repeatPassword: "",
+    });
+
+  const changeHandler = _debounce((event) => {
+    setRegisterData((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.value,
+    }));
+}, 300);
 
   return (
     <div className="register-page">
@@ -21,8 +33,9 @@ export default function RegisterPage() {
           <input
             type="text"
             placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            // value={username}
+            name="username"
+            onChange={changeHandler}
           />
         </div>
 
@@ -33,8 +46,9 @@ export default function RegisterPage() {
           <input
             type="email"
             placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            // value={email}
+            name="email"
+            onChange={(e) => changeHandler(e)}
           />
         </div>
 
@@ -45,8 +59,9 @@ export default function RegisterPage() {
           <input
             type="password"
             placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            // value={password}
+            name="password"
+            onChange={(e) => changeHandler(e)}
           />
         </div>
 
