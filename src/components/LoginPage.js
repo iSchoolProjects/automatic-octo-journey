@@ -5,7 +5,9 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  function doLogin() {}
+  function doLogin() {
+    alert(email, password);
+  }
 
   return (
     <div className="login-page">
@@ -33,7 +35,7 @@ export default function LoginPage() {
           />
         </div>
 
-        <button className="btn-submit" onClick={() => doLogin()}>
+        <button type="button" className="btn-submit" onClick={() => doLogin()}>
           <img width={24} height={24} src="/images/right-arrow-white.png" alt="" />
         </button>
       </form>

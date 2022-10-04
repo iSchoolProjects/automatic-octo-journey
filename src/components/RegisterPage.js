@@ -62,7 +62,7 @@ export default function RegisterPage() {
           />
         </div>
 
-        <button className="btn-submit">
+        <button type="button" className="btn-submit">
           <img width={24} height={24} src="/images/right-arrow-white.png" alt="" />
         </button>
       </form>
