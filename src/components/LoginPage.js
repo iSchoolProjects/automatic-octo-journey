@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { InvalidField } from "../shared/functions/GetInvalidField";
 import SocialLogin from "./SocialLogin";
 
 export default function LoginPage() {
-  const [{email,password}, setLoginData] = useState({
+  const [{ email, password }, setLoginData] = useState({
     email: "",
     password: "",
   });
@@ -16,12 +17,32 @@ export default function LoginPage() {
   }
 
   function doLogin() {
-    alert("email : " + email + "  password : " + password);
+    const users = JSON.parse(localStorage.getItem("users"));
+    const userData = {
+      email: email,
+      password: password,
+    };
+    const errors = [];
+
+    InvalidField(userData, errors);
+
+    if (!!errors?.length) {
+      alert(errors);
+    } else {
+      if (!users?.some((user) => user.email === userData.email)) {
+        return alert("Invalid email");
+      }
+
+      if (!users?.some((user) => user.password === userData.password)) {
+        return alert("Invalid password");
+      }
+
+      alert("Logged in");
+    }
   }
 
   return (
     <div className="login-page">
-      <img width="100%" src="/images/header-bg.png" alt="" />
       <form>
         <div className="flex">
           <img src="/images/user.png" alt="" />
@@ -64,12 +85,6 @@ export default function LoginPage() {
       </div>
 
       <SocialLogin />
-      <img
-        className="footer-bg"
-        width="100%"
-        src="/images/footer-bg.png"
-        alt=""
-      />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { InvalidField } from "../shared/functions/GetInvalidField";
 import SocialLogin from "./SocialLogin";
 
 export default function RegisterPage() {
@@ -18,9 +19,41 @@ export default function RegisterPage() {
     }));
   }
 
+  function doRegister() {
+    const userData = {
+      username: username,
+      email: email,
+      password: password,
+      repeatPassword: repeatPassword,
+    };
+    const errors = [];
+
+    InvalidField(userData, errors);
+
+    if (!!errors?.length) {
+      alert(errors);
+    } else {
+      const localstorageItems = JSON.parse(localStorage.getItem("users"));
+      console.log(localstorageItems);
+      const users = localstorageItems;
+
+      if (!!localstorageItems?.length) {
+        if (!localstorageItems?.some((user) => user.email === userData.email)) {
+          users.push(userData);
+          localStorage.setItem("users", JSON.stringify(users));
+        } else {
+          return alert("User aleardy exist");
+        }
+      } else {
+        users.push(userData);
+        localStorage.setItem("users", JSON.stringify(users));
+      }
+      alert("you are register");
+    }
+  }
+
   return (
     <div className="register-page">
-      <img width="100%" src="/images/header-bg.png" alt="" />
       <div className="card">
         <Link to="/">Login</Link>
       </div>
@@ -75,7 +108,7 @@ export default function RegisterPage() {
           />
         </div>
 
-        <button type="button" className="btn-submit">
+        <button type="button" className="btn-submit" onClick={doRegister}>
           <img
             width={24}
             height={24}
@@ -85,15 +118,7 @@ export default function RegisterPage() {
         </button>
       </form>
 
-      <div className="container-social-media text-center">
-        <SocialLogin />
-      </div>
-      <img
-        className="footer-bg"
-        width="100%"
-        src="/images/footer-bg.png"
-        alt=""
-      />
+      <SocialLogin />
     </div>
   );
 }
