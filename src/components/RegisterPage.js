@@ -34,7 +34,6 @@ export default function RegisterPage() {
       alert(errors);
     } else {
       const localstorageItems = JSON.parse(localStorage.getItem("users"));
-      console.log(localstorageItems);
       const users = localstorageItems;
 
       if (!!localstorageItems?.length) {

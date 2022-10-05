@@ -6,16 +6,16 @@ export default function SocialLogin() {
       <p>Or sign in with</p>
       <div className="holder-social-media">
         <button className="btn-rounded-gray">
-          <img src="/images/facebook.png" alt="" />
+          <img width={16} src="/images/facebook.png" alt="" />
         </button>
         <button className="btn-rounded-gray">
-          <img src="/images/twitter.png" alt="" />
+          <img width={16} src="/images/twitter.png" alt="" />
         </button>
         <button className="btn-rounded-gray">
-          <img src="/images/g.png" alt="" />
+          <img width={16} src="/images/g.png" alt="" />
         </button>
         <button className="btn-rounded-gray">
-          <img src="/images/instagram.png" alt="" />
+          <img width={16} src="/images/instagram.png" alt="" />
         </button>
       </div>
     </div>
